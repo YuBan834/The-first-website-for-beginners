@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>免费 图片文字提取</title>
+  <style>
+    h1:hover {
+      animation: xuan_cai 1s linear infinite;
+    }
+    @keyframes xuan_cai {
+      0% { background-position: 0%; }
+      100% { background-position: 200%; }
+    }
+  </style>
+</head>
+<body style="background-image: linear-gradient(135deg, #c565ef,#55d9ed); height: 100vh;">
+  <h1 style="background-image: linear-gradient(90deg,#3a0ca3, #5f72be, #7c3aed, #4361ee, #a78bfa, #a78bfa, #5f72be, #7c3aed, #4361ee,#3a0ca3);background-size: 200%;-webkit-background-clip: text;-webkit-text-fill-color: transparent;font-size: 60px;position: absolute;left: 225px;">
+    如你所见，这是一个免费的图片文字提取网站
+  </h1>
+
+  <div style="background-color: rgba(255, 255, 255, 0.8); width: 500px; height: 500px; border-radius: 20px; top: 300px; position: absolute; left: 100px;">
+    <h2 style="font-size: 35px; position: absolute; left: 162.5px;">请导入图片</h2>
+    <div style="border: 2px dashed rgba(0, 0, 0, 0.6); height: 400px; bottom: 20px; position: absolute; width: 400px; left: 46.5px;">
+
+      <form action="/upload" method="post" enctype="multipart/form-data" style="position: relative; width: 100%; height: 100%;">
+        <input type="file" id="wenjian" name="file" style="width: 100%; height: 100%; opacity: 0; position: absolute; cursor: pointer;" accept="image/*">
+        <input type="submit" value="开始识别" style="position: absolute; width: 200px; height: 100px; left: 570px; bottom: 200px; background-color: #2e9a40; border-radius: 20px; font-size: 35px; color: aliceblue;">
+        <textarea name="text" style="position: absolute; left: 895px; background-color: rgba(255, 255, 255, 0.8); width: 500px; height: 500px; border-radius: 20px; bottom: -25px;font-size: 25px;font-weight: bold;">{{ ocr_text }}</textarea>
+      </form>
+
+      <b style="font-size: 100px; color: rgba(0, 0, 0, 0.4); position: absolute; width: 60px; left: 50%; margin-left: -30px; top: 50%; margin-top: -80px;">+</b>
+      <img id="yulan" src="" alt="图片预览" style="max-width: 300px; display: none;position: absolute;top: 0px;">
+    </div>
+  </div>
+
+  <h2 style="position: absolute; left: 606px; top: 300px; font-size: 50px; color: rgba(0, 0, 0, 0.4);">----------------------></h2>
+  <h2 style="position: absolute; left: 606px; top: 600px; font-size: 50px; color: rgba(0, 0, 0, 0.4);"><----------------------</h2>
+  <b style="position: absolute;bottom: 0px;">站长邮箱：X20100825@outlook.com</b>
+  <script>
+    const wenjian = document.getElementById('wenjian');
+    const yulan = document.getElementById('yulan');
+
+    wenjian.addEventListener('change', function () {
+      const wenjianzi = wenjian.files[0];
+      if (wenjianzi) {
+        const duquqi = new FileReader();
+        duquqi.onload = function (shijian) {
+          yulan.src = shijian.target.result;
+          yulan.style.display = "block";
+        };
+        duquqi.readAsDataURL(wenjianzi);
+      }
+    });
+  </script>
+</body>
+</html>
